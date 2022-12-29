@@ -1,0 +1,15 @@
+ipykernel
+ipython
+matplotlib
+natsort
+numpy
+pandas
+scikit-learn
+scipy
+igraph
+cairocffi
+pytest
+ordered-set
+torch
+ipywidgets
+sklearn
