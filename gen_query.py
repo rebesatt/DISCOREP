@@ -12,12 +12,12 @@ from examples.PSM_Schema import PSM_Schema
 from immmo.utils import set_seed
 
 psm_model = 'PSM_05' # adjust custom model
-model_path = '../results/PSM_05/model_8000000.bin'  # adjust path to model
+model_path = './results/PSM_05/model_8000000.bin'  # adjust path to model
 k = 3 # num of clusters (does not count critical state)
 
 set_seed(0)
 
-graph_path = '../data/graphs/{psm_model}'.format(psm_model=psm_model)
+graph_path = './data/graphs/{psm_model}'.format(psm_model=psm_model)
 g = KnowledgeGraph.load_from_file(graph_path, 'cuda:0')
 
 model = RepresentationLearning(
