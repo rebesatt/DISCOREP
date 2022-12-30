@@ -39,7 +39,7 @@ def get_f1_of_matches(ground_truth, matches):
   P = len(matched_set)
   T = len(truth_set)
 
-  if P == 0 or TP:
+  if P == 0 or TP == 0:
     return 0, 0, 0
 
   prec = TP / P

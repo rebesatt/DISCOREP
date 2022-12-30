@@ -35,5 +35,8 @@ cluster_ids_x, cluster_centers = clusters
 query_accuracy, configurations, configurations_scores, probability_matrix, paths = Query.generate_queries(
     model, k)
 
-for path in paths:
-  print(query_accuracy, Query.readable_query(psm, configurations, path))
+for i, path in enumerate(paths):
+  print("Query Candidate", i)
+  print("F1: {0} Precision: {1} Recall: {2}".format(*query_accuracy))
+  print(Query.readable_query(psm, configurations, path))
+  print('-----------------')
