@@ -47,9 +47,9 @@ class Query:
         candidate_configurations = [configurations[state]
                                     for state in path_to_critical]
         query_matches = Query.match_query(psm, candidate_configurations)
-        f1, prec, recall = get_f1_of_matches(
+        prec, recall, f1 = get_f1_of_matches(
             psm.model.node_to_scope[psm.model.critical_state_node_indices], (query_matches + 1))
-        query_accuracy.append((f1, prec, recall))
+        query_accuracy.append((prec, recall, f1))
         paths.append(path_to_critical)
 
       # calculate query accuracy
