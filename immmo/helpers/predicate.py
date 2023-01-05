@@ -119,7 +119,6 @@ class Predicate:
 
       cluster_states = psm.model.node_to_scope[psm.non_critical[(
           cluster_ids_x == cluster_id)]]
-      high_candidates = candidates_per_cluster[cluster_id][0]
 
       remaining_predicates = Predicate.filter_predicates(
           psm, high_candidates, cluster_states)
