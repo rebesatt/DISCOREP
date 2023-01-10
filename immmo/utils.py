@@ -15,7 +15,7 @@ def get_unique_first_occurences(values):
 
   _, ind_sorted = torch.sort(idx, stable=True)
   cum_sum = counts.cumsum(0)
-  cum_sum = torch.cat((torch.tensor([0]), cum_sum[:-1]))
+  cum_sum = torch.cat((torch.tensor([0], device=cum_sum.device), cum_sum[:-1]))
   first_indicies = ind_sorted[cum_sum]
 
   assert (values[first_indicies] == unique_values).all()

@@ -41,7 +41,7 @@ class PSM:
     return D
 
   def cluster(self, state_vectors, k):
-    kmeans = KMeans(n_clusters=k, random_state=0, init='k-means++').fit(state_vectors.numpy())
+    kmeans = KMeans(n_clusters=k, random_state=0, init='k-means++', n_init=10).fit(state_vectors.cpu().numpy())
     cluster_ids_x, cluster_centers = torch.tensor(kmeans.labels_, dtype=self.model.graph._index_dtype, device=self.model.device), torch.tensor(kmeans.cluster_centers_, device=self.model.device)
 
     return cluster_ids_x, cluster_centers
@@ -52,7 +52,7 @@ class PSM:
     all_cluster_centers = torch.cat(
         (cluster_centers, self.model.critical_embedding.view(1, -1)))
 
-    M = torch.zeros((k+1, k+1))
+    M = torch.zeros((k+1, k+1), device=cluster_centers.device)
 
     # transition probability between clusters and into the critical state
     for source in range(k):

@@ -77,9 +77,9 @@ class RepresentationLearning(nn.Module):
     else:
       num_of_timing_labels = self.timing_relations.shape[0]
     self.num_of_labels = self.event_nodes.shape[0] + len(self.graph._attributes) + num_of_timing_labels
-    self.event_labels = torch.arange(self.event_nodes.shape[0])
-    self.attribute_labels = torch.arange(len(self.graph._attributes)) + self.event_nodes.shape[0]
-    self.timing_labels = torch.arange(num_of_timing_labels) + self.event_nodes.shape[0] + len(self.graph._attributes)
+    self.event_labels = torch.arange(self.event_nodes.shape[0], device=self.device)
+    self.attribute_labels = torch.arange(len(self.graph._attributes), device=self.device) + self.event_nodes.shape[0]
+    self.timing_labels = torch.arange(num_of_timing_labels, device=self.device) + self.event_nodes.shape[0] + len(self.graph._attributes)
 
     # init label embeddings
     self.labels_emb = self._init_label_emb()
